@@ -32,7 +32,7 @@ class Disc(models.Model):
         :param amount: number of disc's to be added.
         """
         obj = self.get_queryset().select_for_update().get()
-        obj.amount += amount
+        obj.amount = amount
         obj.save()
 
     @transaction.atomic()

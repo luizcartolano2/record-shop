@@ -54,3 +54,30 @@ def delete_disc(request, id_):
         return HttpResponse('Disc deleted.', status=200)
     except:
         return HttpResponse('Fail to delete disc.', status=500)
+
+
+@api_view(['PUT'])
+def put_disc(request, id_):
+    """
+    Method to update a total disc object.
+    """
+    request = request.data
+    try:
+        # make sure no other thread will update same object
+        obj = Disc.objects.get(id=id_)
+        print(obj)
+    except Exception as e:
+        print(e)
+        return HttpResponse('Disc does not exist on DB.', status=400)
+
+    try:
+        obj.name = request['name']
+        obj.artist = request['artist']
+        obj.release_year = request['release_year']
+        obj.style = request['style']
+        obj.save()
+        obj.add_disc(amount=int(request['amount']))
+    except:
+        return HttpResponse('Problem updating object.', status=500)
+
+    return HttpResponse('Update completed.', status=200)
