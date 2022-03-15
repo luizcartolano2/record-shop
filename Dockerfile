@@ -16,6 +16,6 @@ RUN pip install -r /requirements.txt
 # Remove dependencies
 RUN apk del .tmp-build-deps
 
-RUN mkdir /app
-WORKDIR /app
-COPY ./record_shop /app
+RUN mkdir /record_shop
+WORKDIR /record_shop
+COPY . /record_shop
