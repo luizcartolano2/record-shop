@@ -1,0 +1,324 @@
+{
+	"info": {
+		"_postman_id": "5ba3c30b-84de-4971-9762-b50556aea6d4",
+		"name": "record-shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create_disc",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\"        : \"U2\",\n    \"artist\"      : \"U2\",\n    \"release_year\": \"1991\",\n    \"style\"       : \"Rock\",\n    \"amount\"      : 1000\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:3003/ecommerce/create_disc",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3003",
+					"path": [
+						"ecommerce",
+						"create_disc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Zeca Pagodinho\",\n    \"email\": \"2018@gmail.com\",\n    \"phone_number\": \"Pagode\",\n    \"identity\" : 1000,\n    \"birth_day\": 1000,\n    \"password\": \"Teste2233@\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:3003/ecommerce/create_client",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3003",
+					"path": [
+						"ecommerce",
+						"create_client"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"client\": 1,\n    \"disc\": 1,\n    \"amount\": 10000\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:3003/ecommerce/create_request",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3003",
+					"path": [
+						"ecommerce",
+						"create_request"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_disc",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Blood Sugar Sex Magik\",\n    \"artist\": \"Red Hot Chili Peppers\",\n    \"release_year\": \"1991\",\n    \"style\": \"Rock\",\n    \"amount\": 500\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:3003/ecommerce/put_disc/1",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3003",
+					"path": [
+						"ecommerce",
+						"put_disc",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_client",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Zeca Pagodinho\",\n    \"phone_number\": \"+5512981010101\",\n    \"birth_day\": \"1998-02-02\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:3003/ecommerce/put_client/1",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3003",
+					"path": [
+						"ecommerce",
+						"put_client",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_disc",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"release_year__gte\": 1991\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:3003/ecommerce/get_disc",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3003",
+					"path": [
+						"ecommerce",
+						"get_disc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_clients",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:3003/ecommerce/get_clients",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3003",
+					"path": [
+						"ecommerce",
+						"get_clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_requests",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"operation_date__gte\": \"2022-03-15\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:3003/ecommerce/get_requests",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3003",
+					"path": [
+						"ecommerce",
+						"get_requests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_disc",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:3003/ecommerce/delete_disc/34",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3003",
+					"path": [
+						"ecommerce",
+						"delete_disc",
+						"34"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_client",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:3003/ecommerce/delete_client/3",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3003",
+					"path": [
+						"ecommerce",
+						"delete_client",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

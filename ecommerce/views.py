@@ -12,8 +12,8 @@ def create_disc(request):
     """
     Function to create a new disc.
 
-    :param request:
-    :return:
+    :param request: An object representing the request made.
+    :return: An http response informing request result.
     """
     if request.method == 'POST':
         request = request.data
@@ -23,7 +23,7 @@ def create_disc(request):
                        release_year=request['release_year'],
                        style=request['style'],
                        amount=int(request['amount']))
-        except Exception as e:
+        except:
             return HttpResponse('JSON with bad format.', status=400)
 
         try:
@@ -39,8 +39,8 @@ def get_disc(request):
     """
     Function to get a new disc.
 
-    :param request:
-    :return:
+    :param request: An object representing the request made.
+    :return: An http response informing request result.
     """
     filters = request.data
     try:
@@ -55,9 +55,9 @@ def delete_disc(request, id_):
     """
     Function to delete a disc.
 
-    :param request:
-    :param id_:
-    :return:
+    :param request: An object representing the request made.
+    :param id_: The object identifier.
+    :return: An http response informing request result.
     """
     try:
         Disc.objects.filter(id=id_).delete()
@@ -71,9 +71,9 @@ def put_disc(request, id_):
     """
     Method to update a total disc object.
 
-    :param request:
-    :param id_:
-    :return:
+    :param request: An object representing the request made.
+    :param id_: The object identifier.
+    :return: An http response informing request result.
     """
     request = request.data
     try:
@@ -100,8 +100,8 @@ def create_client(request):
     """
     Function to create a new client.
 
-    :param request:
-    :return:
+    :param request: An object representing the request made.
+    :return: An http response informing request result.
     """
     request = request.data
     # get the subscription moment
@@ -132,8 +132,8 @@ def get_clients(request):
     """
     Function to get the users from database.
 
-    :param request:
-    :return:
+    :param request: An object representing the request made.
+    :return: An http response informing request result.
     """
     filters = request.data
     try:
@@ -148,9 +148,9 @@ def put_client(request, id_):
     """
     Function to update a client.
 
-    :param request:
-    :param id_:
-    :return:
+    :param request: An object representing the request made.
+    :param id_: The object identifier.
+    :return: An http response informing request result.
     """
     request = request.data
     try:
@@ -175,9 +175,9 @@ def delete_client(request, id_):
     """
     Function to delete a client (set as inactive).
 
-    :param request:
-    :param id_:
-    :return:
+    :param request: An object representing the request made.
+    :param id_: The object identifier.
+    :return: An http response informing request result.
     """
     try:
         # make sure no other thread will update same object
@@ -195,8 +195,8 @@ def create_request(request):
     """
     Function to create a new request in database.
 
-    :param request:
-    :return:
+    :param request: An object representing the request made.
+    :return: An http response informing request result.
     """
     request = request.data
 
@@ -244,7 +244,7 @@ def get_requests(request):
     """
     Function to retrieve the requests from database.
 
-    :param request:
+    :param request: An object representing the request made.
     :return:
     """
     filters = request.data

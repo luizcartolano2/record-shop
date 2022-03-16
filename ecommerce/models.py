@@ -43,7 +43,7 @@ class Disc(models.Model):
         method we acquire a lock to the table of disc's so no other
         request will write to this entry. Making sure we will not
         sell more discs than available.
-        :param amount: number of disc's to be added.
+        :param amount: number of disc's to be removed.
         """
         obj = self.get_queryset().select_for_update().get()
         if amount <= obj.amount:
