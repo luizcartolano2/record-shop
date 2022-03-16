@@ -4,7 +4,7 @@
 from django.http import HttpResponse, JsonResponse
 from django.utils import timezone
 from rest_framework.decorators import api_view
-from .models import Disc, User
+from .models import Disc, User, Request
 
 
 @api_view(['POST'])
@@ -24,7 +24,6 @@ def create_disc(request):
                        style=request['style'],
                        amount=int(request['amount']))
         except Exception as e:
-            print(e)
             return HttpResponse('JSON with bad format.', status=400)
 
         try:
@@ -189,3 +188,68 @@ def delete_client(request, id_):
         return HttpResponse('User deleted.', status=200)
     except:
         return HttpResponse('User does not exist on DB.', status=400)
+
+
+@api_view(['POST'])
+def create_request(request):
+    """
+    Function to create a new request in database.
+
+    :param request:
+    :return:
+    """
+    request = request.data
+
+    try:
+        client_id = request['client']
+        # get the client object
+        client_obj = User.objects.get(id=client_id)
+    except:
+        return HttpResponse('Client does not exist on DB.', status=400)
+
+    # we check if user is active, otherwise he can't make a request
+    if not client_obj.is_active:
+        return HttpResponse('Client is inactive and cant make a request.', status=401)
+
+    try:
+        # get id of disc and client
+        disc_id = request['disc']
+        # get the disc object
+        disc_obj = Disc.objects.get(id=disc_id)
+    except:
+        return HttpResponse('Disc does not exist on DB.', status=400)
+
+    # check if the amount requested is valid
+    try:
+        amount_requested = request['amount']
+        disc_obj.remove_disc(amount=amount_requested)
+    except:
+        return HttpResponse('The amounted requested is more than the amount available.',
+                            status=401)
+
+    # if we got here user is active and the amount of disc's requested is valid
+    try:
+        request_obj = Request(client=client_obj,
+                              Disc=disc_obj,
+                              amount=amount_requested)
+        request_obj.save()
+
+        return HttpResponse('Request created.', status=201)
+    except:
+        return HttpResponse('Could not create request object.', status=500)
+
+
+@api_view(['GET'])
+def get_requests(request):
+    """
+    Function to retrieve the requests from database.
+
+    :param request:
+    :return:
+    """
+    filters = request.data
+    try:
+        data = list(Request.objects.filter(**filters).values())
+        return JsonResponse(data, safe=False)
+    except:
+        return JsonResponse({}, safe=False)

@@ -47,7 +47,7 @@ class Disc(models.Model):
         """
         obj = self.get_queryset().select_for_update().get()
         if amount <= obj.amount:
-            obj.balance -= amount
+            obj.amount -= amount
             obj.save()
         else:
             raise transaction.TransactionManagementError
